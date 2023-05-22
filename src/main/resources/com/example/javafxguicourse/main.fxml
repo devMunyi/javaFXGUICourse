@@ -9,10 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.MainAppController">
    <children>
-      <Button fx:id="down" layoutX="252.0" layoutY="361.0" mnemonicParsing="false" onAction="#down" text="DOWN" />
-      <Button fx:id="up" layoutX="252.0" layoutY="14.0" mnemonicParsing="false" onAction="#up" text="UP" />
-      <Button fx:id="right" layoutX="14.0" layoutY="188.0" mnemonicParsing="false" onAction="#right" text="RIGHT" />
-      <Button fx:id="left" layoutX="524.0" layoutY="182.0" mnemonicParsing="false" onAction="#left" text="LEFT" />
-      <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="283.0" layoutY="188.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="titleLabel" layoutY="50.0" prefHeight="15.0" prefWidth="600.0" text="Label 1" />
+      <Label fx:id="textLabel" layoutY="316.0" prefHeight="15.0" prefWidth="600.0" text="This is some CSS styling" />
    </children>
 </AnchorPane>
