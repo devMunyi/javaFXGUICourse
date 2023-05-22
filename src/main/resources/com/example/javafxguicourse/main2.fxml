@@ -10,12 +10,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.SceneController">
    <children>
-      <Label fx:id="titleLabel" layoutX="113.0" layoutY="44.0" text="This is Scene 1">
+      <Label fx:id="titleLabel" layoutX="113.0" layoutY="44.0" text="This is Scene 2">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <Button fx:id="btn1" layoutX="197.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToScene2" text="Switch to Scene 2">
+      <Button fx:id="btn2" layoutX="197.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchToScene1" text="Switch to Scene 1">
          <font>
             <Font size="20.0" />
          </font>
