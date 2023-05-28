@@ -8,13 +8,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="myAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
+<AnchorPane fx:id="myAnchorPane" prefHeight="400.0" prefWidth="600.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
    <children>
-      <Slider fx:id="mySlider" layoutX="267.0" layoutY="29.0" majorTickUnit="10.0" minorTickCount="1" orientation="VERTICAL" prefHeight="338.0" prefWidth="16.0" showTickLabels="true" showTickMarks="true" value="50.0" />
-      <Label fx:id="myLabel" layoutX="415.0" layoutY="171.0" prefHeight="58.0" prefWidth="115.0" text="Label">
+      <Label fx:id="myLabel" alignment="CENTER" layoutX="-3.0" layoutY="84.0" prefHeight="29.0" prefWidth="600.0" text="Label">
          <font>
-            <Font size="29.0" />
+            <Font size="24.0" />
          </font>
       </Label>
+      <ProgressBar fx:id="myProgressBar" layoutX="200.0" layoutY="190.0" minHeight="40.0" prefWidth="200.0" progress="0.0" />
+      <Button fx:id="myBtn" layoutX="269.0" layoutY="294.0" mnemonicParsing="false" onAction="#increaseProgress" text="Increase" />
    </children>
 </AnchorPane>

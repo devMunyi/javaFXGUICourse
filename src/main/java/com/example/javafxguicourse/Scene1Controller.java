@@ -17,6 +17,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,22 +29,31 @@ public class Scene1Controller implements Initializable {
     private Label myLabel;
 
     @FXML
-    private Slider mySlider;
+    private ProgressBar myProgressBar;
 
-    int myTemperature;
+    @FXML
+    private Button myBtn;
 
+    // double progress;
 
+    BigDecimal progress = new BigDecimal(String.format("%.2f", 0.0));
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        myTemperature = (int)(mySlider.getValue());
-        myLabel.setText(String.valueOf(myTemperature) + "°C");
+        myProgressBar.setStyle("-fx-accent: #00FF00");
+    }
 
-        mySlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                myTemperature = (int) mySlider.getValue();
-                myLabel.setText(String.valueOf(myTemperature) + "°C");
+    public void increaseProgress(ActionEvent event){
+
+        try {
+            if(progress.doubleValue() < 1){
+                progress = new BigDecimal(String.format("%.2f", progress.doubleValue() + 0.1));
+                myProgressBar.setProgress(progress.doubleValue());
+                System.out.println(progress);
+                String myProgress = Integer.toString((int)Math.round((progress.doubleValue()) * 100)) + "%";
+                myLabel.setText(myProgress);
             }
-        });
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 }
