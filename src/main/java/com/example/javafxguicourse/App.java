@@ -1,6 +1,7 @@
 package com.example.javafxguicourse;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,33 +12,40 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
-        Scene scene = new Scene(root);
 
-        stage.setTitle("Image View");
-        stage.setScene(scene);
-        stage.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
+            Scene scene = new Scene(root);
 
-        stage.setOnCloseRequest(event -> {
-            event.consume();
-            closeApp(stage);
-        });
+            String css = this.getClass().getResource("application.css").toExternalForm();
+            scene.getStylesheets().add(css);
+
+            stage.setTitle("Validating user Text field inputs");
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(event -> {
+                event.consume();
+                closeApp(stage);
+            });
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
-
-    public static void main(String[] args){
-        launch(args);
-    }
 
     public void closeApp(Stage stage){
-       // confirmation alert
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Close App");
-        alert.setHeaderText("You are about to close application!");
-        alert.setContentText("Do you want to save your changes before exiting?");
+        try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Close App");
+            alert.setHeaderText("You Are About to Close Exit App");
+            alert.setContentText("Do you really want to save your changes before exiting");
 
-        if(alert.showAndWait().get() == ButtonType.OK){
-            stage.close();
+            if(alert.showAndWait().get() == ButtonType.OK){
+                stage.close();
+            }
+        }catch(Exception e){
+            System.out.println(e);
         }
     }
 }

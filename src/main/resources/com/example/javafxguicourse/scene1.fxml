@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
    <children>
-      <Button fx:id="toggleImageBtn" layoutX="247.0" layoutY="336.0" mnemonicParsing="false" onAction="#toggleImage" text="Toggle Image" />
-      <ImageView fx:id="myImageView" fitHeight="272.0" fitWidth="429.0" layoutX="97.0" layoutY="24.0" onMouseEntered="#toggleImage" onMouseExited="#toggleImage" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@demo_2.jpg" />
-         </image>
-      </ImageView>
+      <Button fx:id="submitBtn" layoutX="268.0" layoutY="188.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
+      <Label fx:id="myLabel" layoutX="18.0" layoutY="51.0" prefHeight="15.0" prefWidth="556.0" text="Welcome" />
+      <TextField fx:id="ageTextField" layoutX="215.0" layoutY="127.0" promptText="Enter your age" />
    </children>
 </AnchorPane>
