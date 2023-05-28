@@ -7,6 +7,10 @@ import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -15,22 +19,14 @@ import java.time.format.DateTimeFormatter;
 public class Scene1Controller {
 
     @FXML
-    private DatePicker myDatePicker;
-
+    private AnchorPane myAnchorPane;
     @FXML
-    private Label myLabel;
-    public void getDate(ActionEvent event){
+    private ColorPicker myColorPicker;
+
+    public void changeColor(ActionEvent event){
         try {
-            LocalDate myDate = myDatePicker.getValue();
-            //myLabel.setText(myDate.toString()); // output => 2023-05-28 (usually default format)
-
-            // formatting date
-            // String myFormattedDate = myDate.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
-            // myLabel.setText(myFormattedDate); // output => 05-28-2023
-
-            String myFormattedDate2 = myDate.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy"));
-            myLabel.setText(myFormattedDate2); // output => May-28-2023
-
+            Color myColor = myColorPicker.getValue();
+            myAnchorPane.setBackground(new Background(new BackgroundFill(myColor, null,null)));
         }catch (Exception e){
             System.out.println(e);
         }

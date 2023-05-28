@@ -8,13 +8,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
+<AnchorPane fx:id="myAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
    <children>
       <Label fx:id="myLabel" layoutY="76.0" prefHeight="15.0" prefWidth="600.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <DatePicker fx:id="myDatePicker" layoutX="201.0" layoutY="188.0" onAction="#getDate" />
+      <ColorPicker fx:id="myColorPicker" blendMode="DARKEN" layoutX="255.0" layoutY="188.0" onAction="#changeColor" />
    </children>
 </AnchorPane>
