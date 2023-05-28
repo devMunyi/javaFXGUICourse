@@ -10,10 +10,10 @@
 
 <AnchorPane fx:id="myAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
    <children>
-      <ChoiceBox fx:id="myChoiceBox" layoutX="225.0" layoutY="188.0" prefWidth="150.0" />
-      <Label fx:id="myLabel" alignment="CENTER" layoutX="5.0" layoutY="68.0" prefHeight="15.0" prefWidth="591.0" text="Select one food you would like to eat">
+      <Slider fx:id="mySlider" layoutX="267.0" layoutY="29.0" majorTickUnit="10.0" minorTickCount="1" orientation="VERTICAL" prefHeight="338.0" prefWidth="16.0" showTickLabels="true" showTickMarks="true" value="50.0" />
+      <Label fx:id="myLabel" layoutX="415.0" layoutY="171.0" prefHeight="58.0" prefWidth="115.0" text="Label">
          <font>
-            <Font size="24.0" />
+            <Font size="29.0" />
          </font>
       </Label>
    </children>

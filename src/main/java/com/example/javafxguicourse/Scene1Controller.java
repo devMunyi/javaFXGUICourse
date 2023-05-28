@@ -1,5 +1,7 @@
 package com.example.javafxguicourse;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -22,27 +24,26 @@ import java.util.ResourceBundle;
 
 public class Scene1Controller implements Initializable {
 
-   @FXML
+    @FXML
     private Label myLabel;
 
-   @FXML
-    private ChoiceBox<String> myChoiceBox;
+    @FXML
+    private Slider mySlider;
 
-   private String[] food = {"Pizza", "Sushi", "Pilau"};
+    int myTemperature;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        myChoiceBox.getItems().addAll(food);
-        myChoiceBox.setOnAction(this::getFood);
-    }
+        myTemperature = (int)(mySlider.getValue());
+        myLabel.setText(String.valueOf(myTemperature) + "°C");
 
-    private void getFood(ActionEvent event) {
-        try {
-            String myFood = String.valueOf(myChoiceBox.getValue());
-            myLabel.setText(myFood);
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        mySlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                myTemperature = (int) mySlider.getValue();
+                myLabel.setText(String.valueOf(myTemperature) + "°C");
+            }
+        });
     }
 }
