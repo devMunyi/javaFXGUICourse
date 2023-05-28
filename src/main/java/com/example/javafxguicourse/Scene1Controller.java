@@ -1,70 +1,60 @@
 package com.example.javafxguicourse;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
-
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class Scene1Controller {
 
     @FXML
-    private Button submitBtn;
+    private Button exitBtn;
 
     @FXML
     private Label myLabel;
 
     @FXML
-    private TextField ageTextField;
+    private ImageView myImageView;
 
-    private Integer age;
+    @FXML
+    private CheckBox myCheckBox;
 
-    private Boolean error = false;
-
-    public void submit(ActionEvent event){
-
-        String ageInput = ageTextField.getText().trim();
-        if (ageInput.isEmpty()) {
-            error = true;
-            textFillRed(myLabel);
-            myLabel.setText("Please enter your age");
-            return;
-        }
+    Image image1 = new Image(getClass().getResourceAsStream("pic_bulboff.gif"));
+    Image image2 = new Image(getClass().getResourceAsStream("pic_bulbon.gif"));
+    public void change(ActionEvent event){
 
         try {
-
-            age = Integer.parseInt(ageInput);
-
-            if (age >= 18) {
-                myLabel.setText(age + " years old. You're welcome!");
-                error = false;
-            } else {
-                myLabel.setText(age + " years old. You're under age!");
-                error = true;
+            if(myCheckBox.isSelected()){
+                myLabel.setText("ON");
+                myImageView.setImage(image2);
+            }else{
+                myLabel.setText("OFF");
+                myImageView.setImage(image1);
             }
-
-        }catch (NumberFormatException e){
-            myLabel.setText("Invalid age input");
-            error = true;
-            System.out.println("Invalid age input");
-        }catch(Exception e){
-            myLabel.setText(String.valueOf(e));
-            error = true;
+        }catch (Exception e){
             System.out.println(e);
-        }finally {
-            if(error) {
-                textFillRed(myLabel);
-            }else {
-                textFillGreen(myLabel);
-            }
         }
     }
 
-    public void textFillRed(Label label){
-        label.setTextFill(Color.RED);
+    public void closeApp(ActionEvent event){
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit App");
+        alert.setHeaderText("You Are About to Close App");
+        alert.setContentText("Do you want to save changes before exiting?");
+
+        // Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        // or access stage using exitBtn
+        Stage stage = (Stage) exitBtn.getScene().getWindow();
+
+        if(alert.showAndWait().get() == ButtonType.OK){
+            stage.close();
+        }
+
     }
 
-    public void textFillGreen(Label label){
-        label.setTextFill(Color.GREEN);
-    }
 }
