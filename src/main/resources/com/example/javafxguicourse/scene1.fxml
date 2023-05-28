@@ -10,11 +10,11 @@
 
 <AnchorPane fx:id="myAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
    <children>
-      <Label fx:id="myLabel" layoutY="76.0" prefHeight="15.0" prefWidth="600.0">
+      <ChoiceBox fx:id="myChoiceBox" layoutX="225.0" layoutY="188.0" prefWidth="150.0" />
+      <Label fx:id="myLabel" alignment="CENTER" layoutX="5.0" layoutY="68.0" prefHeight="15.0" prefWidth="591.0" text="Select one food you would like to eat">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ColorPicker fx:id="myColorPicker" blendMode="DARKEN" layoutX="255.0" layoutY="188.0" onAction="#changeColor" />
    </children>
 </AnchorPane>

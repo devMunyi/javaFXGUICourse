@@ -21,7 +21,7 @@ public class App extends Application {
         String css = this.getClass().getResource("application.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        stage.setTitle("Using ColorPicker");
+        stage.setTitle("Using ChoiceBox");
         stage.setScene(scene);
         stage.show();
 
