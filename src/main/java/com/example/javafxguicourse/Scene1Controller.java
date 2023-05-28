@@ -10,51 +10,22 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class Scene1Controller {
-
-    @FXML
-    private Button exitBtn;
-
     @FXML
     private Label myLabel;
-
     @FXML
-    private ImageView myImageView;
+    private RadioButton rBtn1, rBtn2, rBtn3;
 
-    @FXML
-    private CheckBox myCheckBox;
-
-    Image image1 = new Image(getClass().getResourceAsStream("pic_bulboff.gif"));
-    Image image2 = new Image(getClass().getResourceAsStream("pic_bulbon.gif"));
-    public void change(ActionEvent event){
-
+    public void getFood(ActionEvent event){
         try {
-            if(myCheckBox.isSelected()){
-                myLabel.setText("ON");
-                myImageView.setImage(image2);
-            }else{
-                myLabel.setText("OFF");
-                myImageView.setImage(image1);
+            if(rBtn1.isSelected()){
+                myLabel.setText(rBtn1.getText());
+            }else if(rBtn2.isSelected()){
+                myLabel.setText(rBtn2.getText());
+            }else if(rBtn3.isSelected()){
+                myLabel.setText(rBtn3.getText());
             }
         }catch (Exception e){
             System.out.println(e);
         }
     }
-
-    public void closeApp(ActionEvent event){
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit App");
-        alert.setHeaderText("You Are About to Close App");
-        alert.setContentText("Do you want to save changes before exiting?");
-
-        // Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        // or access stage using exitBtn
-        Stage stage = (Stage) exitBtn.getScene().getWindow();
-
-        if(alert.showAndWait().get() == ButtonType.OK){
-            stage.close();
-        }
-
-    }
-
 }
