@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -10,7 +11,11 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="newItem" mnemonicParsing="false" onAction="#newMethod" text="New" />
+                  <MenuItem fx:id="newItem" mnemonicParsing="false" onAction="#newMethod" text="New">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="N" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
                   <MenuItem mnemonicParsing="false" text="Save" />
                   <CheckMenuItem mnemonicParsing="false" text="Autosave" />
                   <RadioMenuItem mnemonicParsing="false" text="Option 1">
