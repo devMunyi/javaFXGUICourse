@@ -15,20 +15,24 @@ public class App extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
-        Scene scene = new Scene(root);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
+            Scene scene = new Scene(root);
 
-        String css = this.getClass().getResource("application.css").toExternalForm();
-        scene.getStylesheets().add(css);
+            // String css = this.getClass().getResource("application.css").toExternalForm();
+            // scene.getStylesheets().add(css);
 
-        stage.setTitle("Using TreeView");
-        stage.setScene(scene);
-        stage.show();
+            stage.setTitle("Using MenuBar");
+            stage.setScene(scene);
+            stage.show();
 
-        stage.setOnCloseRequest(event -> {
-            event.consume();
-            closeApp(stage);
-        });
+            stage.setOnCloseRequest(event -> {
+                event.consume();
+                closeApp(stage);
+            });
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void closeApp(Stage stage){

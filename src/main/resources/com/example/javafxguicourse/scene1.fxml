@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane fx:id="myAnchorPane" prefHeight="400.0" prefWidth="600.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
    <children>
-      <TreeView fx:id="treeView" layoutX="57.0" layoutY="42.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="316.0" prefWidth="486.0" />
+      <MenuBar prefHeight="29.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="newItem" mnemonicParsing="false" onAction="#newMethod" text="New" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <CheckMenuItem mnemonicParsing="false" text="Autosave" />
+                  <RadioMenuItem mnemonicParsing="false" text="Option 1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="myGroup" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem mnemonicParsing="false" text="Option 2" toggleGroup="$myGroup" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Something">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help now!!!">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>
