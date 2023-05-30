@@ -24,28 +24,54 @@ public class App extends Application {
             Scene1Controller controller = loader.getController();
             Scene scene = new Scene(root);
 
-            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent event) {
-                    // System.out.println(event.getCode());
-                    switch (event.getCode()){
-                        case UP:
-                            controller.moveUp();
-                            break;
-                        case DOWN:
-                            controller.moveDown();
-                            break;
-                        case LEFT:
-                            controller.moveLeft();
-                            break;
-                        case RIGHT:
-                            controller.moveRight();
-                            break;
-                        default:
-                            break;
-                    }
+            // using lambda function to handle key event
+            scene.setOnKeyPressed(event -> {
+                switch (event.getCode()){
+                    case UP:
+                        controller.moveUp();
+                        break;
+                    case DOWN:
+                        controller.moveDown();
+                        break;
+                    case LEFT:
+                        controller.moveLeft();
+                        break;
+                    case RIGHT:
+                        controller.moveRight();
+                        break;
+                    default:
+                        break;
                 }
+//                @Override
+//                public void handle(KeyEvent event) {
+//                    // System.out.println(event.getCode());
+//
+//                }
             });
+
+            // using handler method to handle key event
+//            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+//                @Override
+//                public void handle(KeyEvent event) {
+//                    // System.out.println(event.getCode());
+//                    switch (event.getCode()){
+//                        case UP:
+//                            controller.moveUp();
+//                            break;
+//                        case DOWN:
+//                            controller.moveDown();
+//                            break;
+//                        case LEFT:
+//                            controller.moveLeft();
+//                            break;
+//                        case RIGHT:
+//                            controller.moveRight();
+//                            break;
+//                        default:
+//                            break;
+//                    }
+//                }
+//            });
 
             stage.setTitle("Detecting Key Pressed on Computer Keyboard");
             stage.setScene(scene);
