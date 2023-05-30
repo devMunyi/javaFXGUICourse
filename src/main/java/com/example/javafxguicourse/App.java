@@ -42,11 +42,6 @@ public class App extends Application {
                     default:
                         break;
                 }
-//                @Override
-//                public void handle(KeyEvent event) {
-//                    // System.out.println(event.getCode());
-//
-//                }
             });
 
             // using handler method to handle key event
