@@ -1,4 +1,3 @@
-#myLabel {
-    -fx-alignment: center;
-    -fx-text-fill: blue;
+#treeView {
+    -fx-background-color: silver;
 }
