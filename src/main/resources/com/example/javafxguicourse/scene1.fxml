@@ -10,12 +10,11 @@
 
 <AnchorPane fx:id="myAnchorPane" prefHeight="400.0" prefWidth="600.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
    <children>
-      <Label fx:id="myLabel" alignment="CENTER" layoutX="-3.0" layoutY="84.0" prefHeight="29.0" prefWidth="600.0" text="Label">
+      <Label fx:id="myLabel" alignment="CENTER" layoutY="62.0" prefHeight="29.0" prefWidth="600.0" text="Select One Food">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="myProgressBar" layoutX="200.0" layoutY="190.0" minHeight="40.0" prefWidth="200.0" progress="0.0" />
-      <Button fx:id="myBtn" layoutX="269.0" layoutY="294.0" mnemonicParsing="false" onAction="#increaseProgress" text="Increase" />
+      <ListView fx:id="myListView" layoutX="200.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

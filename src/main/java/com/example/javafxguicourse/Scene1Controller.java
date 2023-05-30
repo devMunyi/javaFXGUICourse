@@ -1,5 +1,7 @@
 package com.example.javafxguicourse;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,36 +13,38 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Scene1Controller implements Initializable {
-
     @FXML
     private Label myLabel;
 
     @FXML
-    private ProgressBar myProgressBar;
+    private ListView<String> myListView;
 
-    @FXML
-    private Button myBtn;
+    private String[] food = {"Pilau", "Sushi", "Pizza"};
 
-    // double progress;
 
-    BigDecimal progress = new BigDecimal(String.format("%.2f", 0.0));
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        myProgressBar.setStyle("-fx-accent: #00FF00");
+    private String currentFood;
+
+    public void getFood(ActionEvent event){
+
     }
 
-    public void increaseProgress(ActionEvent event){
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        myListView.getItems().addAll(food);
+        // changeSelectedFood();
 
-        try {
-            if(progress.doubleValue() < 1){
-                progress = new BigDecimal(String.format("%.2f", progress.doubleValue() + 0.1));
-                myProgressBar.setProgress(progress.doubleValue());
-                System.out.println(progress);
-                String myProgress = Integer.toString((int)Math.round((progress.doubleValue()) * 100)) + "%";
-                myLabel.setText(myProgress);
+        // add listener to update label text on selection change
+        myListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                changeSelectedFood();
             }
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        });
+
+    }
+
+    public void changeSelectedFood(){
+        currentFood = myListView.getSelectionModel().getSelectedItem();
+        myLabel.setText(currentFood);
     }
 }
