@@ -1,25 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.input.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.javafxguicourse.Scene1Controller"
+            prefHeight="400.0" prefWidth="600.0">
 
-<FlowPane alignment="TOP_CENTER" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Button mnemonicParsing="false" text="Button" />
-      <Button mnemonicParsing="false" text="Button" />
-      <Button mnemonicParsing="false" text="Button" />
-      <Button mnemonicParsing="false" text="Button" />
-      <Button mnemonicParsing="false" text="Button" />
-      <Button mnemonicParsing="false" text="Button" />
-      <CheckBox mnemonicParsing="false" text="CheckBox" />
-      <Button mnemonicParsing="false" text="Button" />
-      <Button mnemonicParsing="false" text="Button" />
-      <CheckBox mnemonicParsing="false" text="CheckBox" />
-      <CheckBox mnemonicParsing="false" text="CheckBox" />
-      <CheckBox mnemonicParsing="false" text="CheckBox" />
-      <CheckBox mnemonicParsing="false" text="CheckBox" />
-   </children>
-</FlowPane>
+</AnchorPane>

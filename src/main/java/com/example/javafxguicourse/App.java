@@ -1,11 +1,13 @@
 package com.example.javafxguicourse;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -16,13 +18,36 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
+            // Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
+            Parent root = loader.load();
+            Scene1Controller controller = loader.getController();
             Scene scene = new Scene(root);
 
-            // String css = this.getClass().getResource("application.css").toExternalForm();
-            // scene.getStylesheets().add(css);
+            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent event) {
+                    // System.out.println(event.getCode());
+                    switch (event.getCode()){
+                        case UP:
+                            controller.moveUp();
+                            break;
+                        case DOWN:
+                            controller.moveDown();
+                            break;
+                        case LEFT:
+                            controller.moveLeft();
+                            break;
+                        case RIGHT:
+                            controller.moveRight();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
 
-            stage.setTitle("Using FlowPane");
+            stage.setTitle("Detecting Key Pressed on Computer Keyboard");
             stage.setScene(scene);
             stage.show();
 
