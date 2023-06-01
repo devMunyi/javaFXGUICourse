@@ -21,54 +21,9 @@ public class App extends Application {
             // Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
             Parent root = loader.load();
-            Scene1Controller controller = loader.getController();
             Scene scene = new Scene(root);
 
-            // using lambda function to handle key event
-            scene.setOnKeyPressed(event -> {
-                switch (event.getCode()){
-                    case UP:
-                        controller.moveUp();
-                        break;
-                    case DOWN:
-                        controller.moveDown();
-                        break;
-                    case LEFT:
-                        controller.moveLeft();
-                        break;
-                    case RIGHT:
-                        controller.moveRight();
-                        break;
-                    default:
-                        break;
-                }
-            });
-
-            // using handler method to handle key event
-//            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//                @Override
-//                public void handle(KeyEvent event) {
-//                    // System.out.println(event.getCode());
-//                    switch (event.getCode()){
-//                        case UP:
-//                            controller.moveUp();
-//                            break;
-//                        case DOWN:
-//                            controller.moveDown();
-//                            break;
-//                        case LEFT:
-//                            controller.moveLeft();
-//                            break;
-//                        case RIGHT:
-//                            controller.moveRight();
-//                            break;
-//                        default:
-//                            break;
-//                    }
-//                }
-//            });
-
-            stage.setTitle("Detecting Key Pressed on Computer Keyboard");
+            stage.setTitle("Animation - translate, rotate");
             stage.setScene(scene);
             stage.show();
 

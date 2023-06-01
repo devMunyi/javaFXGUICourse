@@ -1,22 +1,26 @@
 package com.example.javafxguicourse;
 
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 
-public class Scene1Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    public void moveUp(){
-        System.out.println("MOVING UP");
-    }
+public class Scene1Controller implements Initializable {
 
-    public void moveDown(){
-        System.out.println("MOVING DOWN");
-    }
+    @FXML
+    private ImageView imageView;
 
-    public void moveLeft(){
-        System.out.println("MOVING LEFT");
-    }
 
-    public void moveRight(){
-        System.out.println("MOVING RIGHT");
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //translate
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setNode(imageView);
+        translateTransition.setByX(250);
+        translateTransition.play();
     }
 }
