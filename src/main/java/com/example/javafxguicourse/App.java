@@ -23,7 +23,7 @@ public class App extends Application {
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            stage.setTitle("Animation - translate, rotate");
+            stage.setTitle("Animation - translate, rotate, fade and scale");
             stage.setScene(scene);
             stage.show();
 
