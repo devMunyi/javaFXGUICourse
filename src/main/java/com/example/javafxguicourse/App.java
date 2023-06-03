@@ -19,11 +19,11 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         try {
             // Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("scene1.fxml"));
+            // Parent root = loader.load();
+            Scene scene = new Scene(loader.load());
 
-            stage.setTitle("Animation - translate, rotate, fade and scale");
+            stage.setTitle("MediaView, MediaPlayer, Media, File");
             stage.setScene(scene);
             stage.show();
 

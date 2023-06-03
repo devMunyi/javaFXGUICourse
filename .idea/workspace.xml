@@ -64,6 +64,7 @@
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.javafxguicourse.App" />
       <module name="javaFXGUICourse" />
+      <option name="PROGRAM_PARAMETERS" value="--add-module javafx.controls.javafx.media" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.javafxguicourse.*" />
@@ -100,6 +101,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="Application.HelloApplication" />
+      <item itemvalue="Application.MainApp" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />

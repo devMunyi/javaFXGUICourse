@@ -1,77 +1,52 @@
 package com.example.javafxguicourse;
 
-import javafx.animation.*;
-import javafx.event.ActionEvent;
+import javafx.scene.media.*;;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point3D;
-import javafx.scene.image.ImageView;
-import javafx.scene.transform.Rotate;
+import javafx.scene.control.Button;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Scene1Controller implements Initializable {
 
     @FXML
-    private ImageView imageView;
+    private MediaView mediaView;
+    @FXML
+    private Button playBtn, pauseBtn, resetBtn;
+
+    private File file;
+    private Media media;
+    private MediaPlayer mediaPlayer;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //translate
-        /*
+        // mediaView.setMediaPlayer(new MediaPlayer(new File("video.mp4")));
 
-        TranslateTransition translateTransition = new TranslateTransition();
-        translateTransition.setNode(imageView);
-        translateTransition.setDuration(Duration.millis(1000));
-        translateTransition.setCycleCount(Animation.INDEFINITE);
-        translateTransition.setAutoReverse(true);
-        // translateTransition.interpolate(50);
-        translateTransition.setByX(250);
-        translateTransition.play();
+        try {
+            // readlink -f video.mp4 (is the command to get full file pah in linux on cmd)
+            file = new File("/home/samuel/Public/Java/JavaFX/javaFXGUICourse/src/main/java/com/example/javafxguicourse/video.mp4");
+            media = new Media(file.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaView.setMediaPlayer(mediaPlayer);
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
-         */
+    public void playMedia() {
+        mediaPlayer.play();
+    }
 
-        // rotate
-        /*
-        RotateTransition rotateTransition = new RotateTransition();
-        rotateTransition.setNode(imageView);
-        rotateTransition.setCycleCount(Animation.INDEFINITE);
-        rotateTransition.setDuration(Duration.millis(1000));
-        rotateTransition.setByAngle(360);
-        rotateTransition.setInterpolator(Interpolator.LINEAR);
-        rotateTransition.setAxis(Rotate.Y_AXIS); // others: X_AXIS, Z_AXIS(default)
-        rotateTransition.play();
+    public void pauseMedia() {
+        mediaPlayer.pause();
+    }
 
-        */
-
-        // fade
-        /*
-        FadeTransition fadeTransition = new FadeTransition();
-        fadeTransition.setNode(imageView);
-        fadeTransition.setDuration(Duration.millis(1000));
-        fadeTransition.setCycleCount(Animation.INDEFINITE);
-        fadeTransition.setFromValue(0);
-        fadeTransition.setToValue(1);
-        fadeTransition.play();
-
-         */
-
-        // scale
-        ScaleTransition scaleTransition = new ScaleTransition();
-        scaleTransition.setNode(imageView);
-        scaleTransition.setDuration(Duration.millis(1000));
-        scaleTransition.setCycleCount(Animation.INDEFINITE);
-        scaleTransition.setAutoReverse(true);
-        scaleTransition.setByX(2.0);
-        scaleTransition.setByY(2.0);
-//        scaleTransition.setFromX(1);
-//        scaleTransition.setToX(2);
-//        scaleTransition.setFromY(1);
-//        scaleTransition.setToY(2);
-//        scaleTransition.setFromZ(1);
-//        scaleTransition.setToZ(2);
-        scaleTransition.play();
+    public void resetMedia() {
+        mediaPlayer.seek(Duration.seconds(0.0));
     }
 }
