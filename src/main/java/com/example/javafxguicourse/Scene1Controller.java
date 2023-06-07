@@ -1,122 +1,143 @@
 package com.example.javafxguicourse;
 
-import javafx.collections.ObservableList;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebHistory;
-import javafx.scene.web.WebView;
+import javafx.scene.control.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Scene1Controller implements Initializable {
-
     @FXML
-    private WebView webView;
+    private Label musicLabel;
     @FXML
-    private Button loadBtn, refreshBtn;
-
+    private ProgressBar musicProgressBar;
     @FXML
-    private TextField textField;
+    private Button playBtn, pauseBtn, resetBtn, previousBtn, nextBtn;
+    @FXML
+    private ComboBox<String> speedComboBox;
+    @FXML
+    private Slider volumeSlider;
 
-    private WebEngine webEngine;
-    private String homePage;
+    private Media media;
+    private MediaPlayer mediaPlayer;
 
-    private double zoomWeb = 1;
-    private WebHistory webHistory;
+    private File directory;
+    private File[] files;
+    private ArrayList<File> songs;
+
+    private int songNumber;
+    private int[] speeds = { 25, 50, 75, 100, 125, 150, 175, 200 };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        songs = new ArrayList<File>();
+        directory = new File("/home/samuel/Public/Java/JavaFX/javaFXGUICourse/src/main/resources/com/example/javafxguicourse/music/");
+        files = directory.listFiles();
 
-        try {
-             webEngine = webView.getEngine();
-             homePage = "https://www.google.com";
-             webEngine.load(homePage);
-             loadPage();
-        }catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public void loadPage(){
-        try {
-            String urlInput = textField.getText().trim();
-            if(!urlInput.isEmpty()){ // isEmpty returns false if string only has whitespace while isBlank returns true
-                webEngine.load("https://"+urlInput);
+        if(files != null){
+            for (File file : files){
+                System.out.println(file);
+                songs.add(file);
             }
-        }catch (Exception e){
-            System.out.println(e);
         }
 
+        media = new Media(songs.get(songNumber).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        musicLabel.setText(songs.get(songNumber).getName());
+
+        for(int i = 0; i < speeds.length; i++){
+            speedComboBox.getItems().add(Integer.toString(speeds[i]) + "%");
+        }
+
+        speedComboBox.setOnAction(this::changeSpeed);
+        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+            }
+        });
     }
 
-    public void refreshPage(){
+    public void playMedia(){
+
+        mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+        mediaPlayer.play();
+    }
+
+    public void pauseMedia(){
+        mediaPlayer.pause();
+    }
+
+    public void resetMedia(){
+        mediaPlayer.seek(Duration.seconds(0.0));
+    }
+
+    public void nextMedia(){
+
         try {
-            webEngine.reload();
+            if(songNumber < songs.size() - 1){
+                songNumber++;
+            }else {
+                songNumber = 0;
+            }
+            mediaPlayer.stop();
+            media = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            musicLabel.setText(songs.get(songNumber).getName());
+            playMedia();
         }catch (Exception e){
             System.out.println(e);
         }
     }
 
-    public void zoomIn(){
-        zoomWeb += 0.25;
-        webView.setZoom(zoomWeb);
-    }
-
-    public void zoomOut(){
-        zoomWeb -= 0.25;
-        webView.setZoom(zoomWeb);
-    }
-
-    public void displayHistory(){
-        webHistory = webEngine.getHistory();
-        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
-
-        for(WebHistory.Entry entry : entries){
-            // System.out.println(entry);
-            System.out.println("URL: "+entry.getUrl() + " Last Visited: " + entry.getLastVisitedDate());
-        }
-    }
-
-
-    public void goBack(){
+    public void previousMedia(){
         try {
-            webHistory = webEngine.getHistory();
-            ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
-            webHistory.go(-1);
-            textField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("Error: "+ e);
+            if(songNumber > 0){
+                songNumber--;
+            }else{
+                songNumber = songs.size() - 1;
+            }
+
+            mediaPlayer.stop();
+            media = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            musicLabel.setText(songs.get(songNumber).getName());
+            playMedia();
         }catch (Exception e){
             System.out.println(e);
         }
     }
 
-    public void goForward(){
-        try {
-            webHistory = webEngine.getHistory();
-            ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
-            webHistory.go(1);
-            textField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("Error: "+ e);
-        }catch (Exception e){
-            System.out.println(e);
-        }
+    public void changeSpeed(ActionEvent event){
+        mediaPlayer.setRate(Integer.parseInt(speedComboBox.getValue().substring(0, speedComboBox.getValue().length() - 1)) * 0.01);
     }
 
-    public void executeJS(){
+    public void beginTimer(){
+
+    }
+
+    public void cancelTimer(){
+
+    }
+
+    public String musicName(String filePath) {
         try {
-            String urlInput = "https://www.youtube.com";
-            webEngine.executeScript("window.location=\""+urlInput+"\"");
-            webHistory = webEngine.getHistory();
-            ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
-            textField.setText(urlInput);
-        }catch (Exception e){
+            File file = new File(filePath);
+            String basename = file.getName();
+            return basename;
+        } catch (Exception e) {
             System.out.println(e);
+            return null;
         }
     }
 }
