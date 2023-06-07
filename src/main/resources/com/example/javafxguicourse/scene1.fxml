@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.media.*?>
 <?import java.lang.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxguicourse.Scene1Controller">
    <children>
-      <MediaView fx:id="mediaView" fitHeight="300.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" />
-      <Button fx:id="playBtn" layoutX="108.0" layoutY="269.0" mnemonicParsing="false" onAction="#playMedia" text="PLAY" />
-      <Button fx:id="pauseBtn" layoutX="257.0" layoutY="269.0" mnemonicParsing="false" onAction="#pauseMedia" text="PAUSE" />
-      <Button layoutX="420.0" layoutY="269.0" mnemonicParsing="false" onAction="#resetMedia" text="RESET" />
+      <WebView fx:id="webView" layoutX="14.0" layoutY="76.0" prefHeight="314.0" prefWidth="572.0" />
+      <Button fx:id="loadBtn" layoutX="18.0" layoutY="39.0" mnemonicParsing="false" onAction="#loadPage" text="Load" />
+      <TextField fx:id="textField" layoutX="18.0" layoutY="14.0" onAction="#loadPage" prefHeight="25.0" prefWidth="572.0" promptText="Enter url" />
+      <Button fx:id="refreshBtn" layoutX="83.0" layoutY="39.0" mnemonicParsing="false" onAction="#refreshPage" text="Refresh" />
+      <Button layoutX="166.0" layoutY="39.0" mnemonicParsing="false" onAction="#zoomIn" text="+" />
+      <Button layoutX="214.0" layoutY="39.0" mnemonicParsing="false" onAction="#zoomOut" prefHeight="25.0" prefWidth="29.0" text="-" />
+      <Button layoutX="254.0" layoutY="39.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <Button layoutX="318.0" layoutY="39.0" mnemonicParsing="false" onAction="#goForward" text="Forward" />
+      <Button layoutX="402.0" layoutY="39.0" mnemonicParsing="false" onAction="#displayHistory" text="History" />
+      <Button layoutX="478.0" layoutY="39.0" mnemonicParsing="false" onAction="#executeJS" text="Execute JS" />
    </children>
 </AnchorPane>

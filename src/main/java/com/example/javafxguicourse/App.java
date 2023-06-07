@@ -20,7 +20,7 @@ public class App extends Application {
             // Parent root = loader.load();
             Scene scene = new Scene(loader.load());
 
-            stage.setTitle("MediaView, MediaPlayer, Media, File");
+            stage.setTitle("Using WebView");
             stage.setScene(scene);
             stage.show();
 
