@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e16ae48-0d2f-42bc-ae74-798c4f14cd04" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxguicourse/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxguicourse/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxguicourse/Scene1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxguicourse/Scene1Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxguicourse/video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javafxguicourse/scene1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javafxguicourse/scene1.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="0e16ae48-0d2f-42bc-ae74-798c4f14cd04" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

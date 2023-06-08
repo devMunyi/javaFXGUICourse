@@ -2,6 +2,7 @@ package com.example.javafxguicourse;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Scene1Controller implements Initializable {
     @FXML
@@ -37,6 +40,9 @@ public class Scene1Controller implements Initializable {
 
     private int songNumber;
     private int[] speeds = { 25, 50, 75, 100, 125, 150, 175, 200 };
+    private Timer timer;
+    private TimerTask task;
+    private boolean running = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,27 +65,47 @@ public class Scene1Controller implements Initializable {
             speedComboBox.getItems().add(Integer.toString(speeds[i]) + "%");
         }
 
+        // set onAction Event method to ComboBox to handle selected music speed
         speedComboBox.setOnAction(this::changeSpeed);
+
+        // add listener to volume increase or decrease
         volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
             }
         });
+        musicProgressBar.setStyle("-fx-accent: #00FF00");
     }
 
     public void playMedia(){
-
-        mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
-        mediaPlayer.play();
+        try {
+            beginTimer();
+            mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+            mediaPlayer.play();
+            changeSpeed(null);
+        }catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void pauseMedia(){
-        mediaPlayer.pause();
+        try {
+            cancelTimer();
+            mediaPlayer.pause();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     public void resetMedia(){
-        mediaPlayer.seek(Duration.seconds(0.0));
+        try {
+            mediaPlayer.seek(Duration.seconds(0.0));
+            musicProgressBar.setProgress(0);
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void nextMedia(){
@@ -90,6 +116,11 @@ public class Scene1Controller implements Initializable {
             }else {
                 songNumber = 0;
             }
+
+            if(running){
+                cancelTimer();
+            }
+            
             mediaPlayer.stop();
             media = new Media(songs.get(songNumber).toURI().toString());
             mediaPlayer = new MediaPlayer(media);
@@ -108,6 +139,10 @@ public class Scene1Controller implements Initializable {
                 songNumber = songs.size() - 1;
             }
 
+            if(running){
+                cancelTimer();
+            }
+
             mediaPlayer.stop();
             media = new Media(songs.get(songNumber).toURI().toString());
             mediaPlayer = new MediaPlayer(media);
@@ -119,25 +154,44 @@ public class Scene1Controller implements Initializable {
     }
 
     public void changeSpeed(ActionEvent event){
-        mediaPlayer.setRate(Integer.parseInt(speedComboBox.getValue().substring(0, speedComboBox.getValue().length() - 1)) * 0.01);
+        try {
+            String comboBoxValue = speedComboBox.getValue();
+            if(comboBoxValue == null){
+                // set default
+                mediaPlayer.setRate(1);
+            }else{
+                // set value selected from ComboBox
+                mediaPlayer.setRate(Integer.parseInt(comboBoxValue.substring(0, comboBoxValue.length() - 1)) * 0.01);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     public void beginTimer(){
+        timer = new Timer();
+        task = new TimerTask() {
+            public void run(){
+                running = true;
+                double currentPlayTimeSec = mediaPlayer.getCurrentTime().toSeconds();
+                double endOfPlayTimeSec = media.getDuration().toSeconds();
+                System.out.println(currentPlayTimeSec/endOfPlayTimeSec);
+                musicProgressBar.setProgress(currentPlayTimeSec/endOfPlayTimeSec);
 
+                if(currentPlayTimeSec/endOfPlayTimeSec == 1){
+                    // song has reached the end of play duration
+                    cancelTimer();
+                    playMedia();
+                }
+            }
+        };
+
+        timer.scheduleAtFixedRate(task, 1000, 1000);
     }
 
     public void cancelTimer(){
-
-    }
-
-    public String musicName(String filePath) {
-        try {
-            File file = new File(filePath);
-            String basename = file.getName();
-            return basename;
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
+        running = false;
+        timer.cancel();
     }
 }
